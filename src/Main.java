@@ -19,6 +19,7 @@ public class Main {
         getTotalSalaryCosts();
         getEmployeeWithMinSalary();
         getEmployeeWithMaxSalary();
+        getAverageSalary();
     }
 
     private static void printEmployees() {
@@ -53,7 +54,7 @@ public class Main {
             }
         }
 
-        System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s . ЗП: %s рублей\n",
+        System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s ЗП: %s рублей\n",
                 employeeWithMinSalary.getName(),
                 employeeWithMinSalary.getSalary()
         );
@@ -71,11 +72,19 @@ public class Main {
             }
         }
 
-        System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s . ЗП: %s рублей\n",
+        System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s ЗП: %s рублей\n",
                 employeeWithMaxSalary.getName(),
                 employeeWithMaxSalary.getSalary()
         );
 
         return employeeWithMaxSalary;
+    }
+
+    private static float getAverageSalary() {
+        float averageSalary = (float) getTotalSalaryCosts() / employees.length;
+
+        System.out.printf("Среднее значение зарплат: %.2f рублей\n", averageSalary);
+
+        return averageSalary;
     }
 }
