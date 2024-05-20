@@ -1,15 +1,14 @@
 import java.util.Objects;
-import java.util.concurrent.atomic.AtomicInteger;
 
 public class Employee {
-    private static final AtomicInteger COUNTER = new AtomicInteger(1);
+    private static int idCounter = 1;
     private int id;
     private String name;
     private byte department;
     private int salary;
 
     public Employee(String name, byte department, int salary) {
-        this.id = COUNTER.getAndIncrement();
+        this.id = idCounter++;
         this.name = name;
         this.department = department;
         this.salary = salary;
