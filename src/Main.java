@@ -14,7 +14,9 @@ public class Main {
                 new Employee("Шляп И.С.", (byte) 2, 68721),
                 new Employee("Вишня Л.Г.", (byte) 4, 47866)
         };
+
         printEmployees();
+        getTotalSalaryCosts();
     }
 
     private static void printEmployees() {
@@ -26,5 +28,16 @@ public class Main {
                     employee.getSalary()
             );
         }
+    }
+
+    private static int getTotalSalaryCosts() {
+        int totalCosts = 0;
+        for (Employee employee : employees) {
+            totalCosts += employee.getSalary();
+        }
+
+        System.out.printf("Сумма затрат на заработную плату в месяц: %s рублей\n", totalCosts);
+
+        return totalCosts;
     }
 }
