@@ -17,6 +17,7 @@ public class Main {
 
         printEmployees();
         getTotalSalaryCosts();
+        getEmployeeWithMinSalary();
     }
 
     private static void printEmployees() {
@@ -39,5 +40,23 @@ public class Main {
         System.out.printf("Сумма затрат на заработную плату в месяц: %s рублей\n", totalCosts);
 
         return totalCosts;
+    }
+
+    private static Employee getEmployeeWithMinSalary() {
+        if (employees.length == 0) return null;
+
+        Employee employeeWithMinSalary = employees[0];
+        for (Employee employee : employees) {
+            if (employee.getSalary() < employeeWithMinSalary.getSalary()) {
+                employeeWithMinSalary = employee;
+            }
+        }
+
+        System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s . ЗП: %s рублей\n",
+                employeeWithMinSalary.getName(),
+                employeeWithMinSalary.getSalary()
+        );
+
+        return employeeWithMinSalary;
     }
 }
