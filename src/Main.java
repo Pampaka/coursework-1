@@ -18,6 +18,7 @@ public class Main {
         printEmployees();
         getTotalSalaryCosts();
         getEmployeeWithMinSalary();
+        getEmployeeWithMaxSalary();
     }
 
     private static void printEmployees() {
@@ -58,5 +59,23 @@ public class Main {
         );
 
         return employeeWithMinSalary;
+    }
+
+    private static Employee getEmployeeWithMaxSalary() {
+        if (employees.length == 0) return null;
+
+        Employee employeeWithMaxSalary = employees[0];
+        for (Employee employee : employees) {
+            if (employee.getSalary() > employeeWithMaxSalary.getSalary()) {
+                employeeWithMaxSalary = employee;
+            }
+        }
+
+        System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s . ЗП: %s рублей\n",
+                employeeWithMaxSalary.getName(),
+                employeeWithMaxSalary.getSalary()
+        );
+
+        return employeeWithMaxSalary;
     }
 }
