@@ -43,6 +43,11 @@ public class Main {
     }
 
     private static void printEmployees() {
+        if (employees.length == 0) {
+            System.out.println("Нет ни одного сотрудника");
+            return;
+        }
+
         for (Employee employee : employees) {
             System.out.printf("Сотрудник %s. Имя %s. Отдел %s. Зарплата %s\n",
                     employee.getId(),
@@ -89,10 +94,16 @@ public class Main {
     }
 
     private static float getAverageSalary() {
+        if (employees.length == 0) return 0f;
         return (float) getTotalSalaryCosts() / employees.length;
     }
 
     private static void printEmployeesNames() {
+        if (employees.length == 0) {
+            System.out.println("Нет ни одного сотрудника");
+            return;
+        }
+
         System.out.println("Список сотрудников: ");
         for (Employee employee : employees) {
             System.out.println(employee.getName());
