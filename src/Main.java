@@ -20,6 +20,7 @@ public class Main {
         getEmployeeWithMinSalary();
         getEmployeeWithMaxSalary();
         getAverageSalary();
+        printEmployeesNames();
     }
 
     private static void printEmployees() {
@@ -86,5 +87,12 @@ public class Main {
         System.out.printf("Среднее значение зарплат: %.2f рублей\n", averageSalary);
 
         return averageSalary;
+    }
+
+    private static void printEmployeesNames() {
+        System.out.println("Список сотрудников: ");
+        for (Employee employee : employees) {
+            System.out.println(employee.getName());
+        }
     }
 }
