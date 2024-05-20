@@ -16,10 +16,29 @@ public class Main {
         };
 
         printEmployees();
-        getTotalSalaryCosts();
-        getEmployeeWithMinSalary();
-        getEmployeeWithMaxSalary();
-        getAverageSalary();
+
+        int totalCosts = getTotalSalaryCosts();
+        System.out.printf("Сумма затрат на заработную плату в месяц: %s рублей\n", totalCosts);
+
+        Employee employeeWithMinSalary = getEmployeeWithMinSalary();
+        if (employeeWithMinSalary != null) {
+            System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s ЗП: %s рублей\n",
+                    employeeWithMinSalary.getName(),
+                    employeeWithMinSalary.getSalary()
+            );
+        }
+
+        Employee employeeWithMaxSalary = getEmployeeWithMaxSalary();
+        if (employeeWithMaxSalary != null) {
+            System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s ЗП: %s рублей\n",
+                    employeeWithMaxSalary.getName(),
+                    employeeWithMaxSalary.getSalary()
+            );
+        }
+
+        float averageSalary = getAverageSalary();
+        System.out.printf("Среднее значение зарплат: %.2f рублей\n", averageSalary);
+
         printEmployeesNames();
     }
 
@@ -40,8 +59,6 @@ public class Main {
             totalCosts += employee.getSalary();
         }
 
-        System.out.printf("Сумма затрат на заработную плату в месяц: %s рублей\n", totalCosts);
-
         return totalCosts;
     }
 
@@ -54,11 +71,6 @@ public class Main {
                 employeeWithMinSalary = employee;
             }
         }
-
-        System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s ЗП: %s рублей\n",
-                employeeWithMinSalary.getName(),
-                employeeWithMinSalary.getSalary()
-        );
 
         return employeeWithMinSalary;
     }
@@ -73,20 +85,11 @@ public class Main {
             }
         }
 
-        System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s ЗП: %s рублей\n",
-                employeeWithMaxSalary.getName(),
-                employeeWithMaxSalary.getSalary()
-        );
-
         return employeeWithMaxSalary;
     }
 
     private static float getAverageSalary() {
-        float averageSalary = (float) getTotalSalaryCosts() / employees.length;
-
-        System.out.printf("Среднее значение зарплат: %.2f рублей\n", averageSalary);
-
-        return averageSalary;
+        return (float) getTotalSalaryCosts() / employees.length;
     }
 
     private static void printEmployeesNames() {
