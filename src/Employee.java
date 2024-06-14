@@ -2,8 +2,8 @@ import java.util.Objects;
 
 public class Employee {
     private static int idCounter = 1;
-    private int id;
-    private String name;
+    private final int id;
+    private final String name;
     private byte department;
     private int salary;
 
@@ -50,5 +50,15 @@ public class Employee {
 
     public int getSalary() {
         return salary;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("Сотрудник %s. Имя %s. Отдел %s. Зарплата %s",
+                this.id,
+                this.name,
+                this.department,
+                this.salary
+        );
     }
 }

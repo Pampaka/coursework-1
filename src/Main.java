@@ -49,12 +49,7 @@ public class Main {
         }
 
         for (Employee employee : employees) {
-            System.out.printf("Сотрудник %s. Имя %s. Отдел %s. Зарплата %s\n",
-                    employee.getId(),
-                    employee.getName(),
-                    employee.getDepartment(),
-                    employee.getSalary()
-            );
+            System.out.println(employee);
         }
     }
 
