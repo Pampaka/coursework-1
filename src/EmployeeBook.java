@@ -25,9 +25,10 @@ public class EmployeeBook {
         return null;
     }
 
-    public boolean addEmployee(Employee employee) {
+    public boolean addEmployee(String name, byte department, double salary) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
+                Employee employee = new Employee(name, department, salary);
                 employees[i] = employee;
                 return true;
             }

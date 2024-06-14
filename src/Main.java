@@ -71,13 +71,13 @@ public class Main {
         System.out.println();
         employeeBook.printEmployeesSalaryGte(40000);
 
-        boolean addResult = employeeBook.addEmployee(new Employee("Неуловимый М.В.", (byte) 5, 52121));
+        boolean addResult = employeeBook.addEmployee("Неуловимый М.В.", (byte) 5, 52121);
         System.out.println(addResult);
         employeeBook.removeEmployee(6);
-        addResult = employeeBook.addEmployee(new Employee("Пойманный М.В.", (byte) 5, 52121));
+        addResult = employeeBook.addEmployee("Пойманный М.В.", (byte) 5, 52121);
         System.out.println(addResult);
 
-        Employee employee = employeeBook.getEmployee(12);
+        Employee employee = employeeBook.getEmployee(11);
         System.out.println(employee);
     }
 }
