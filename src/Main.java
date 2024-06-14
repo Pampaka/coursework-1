@@ -68,6 +68,12 @@ public class Main {
                 department,
                 totalCostsByDepartment
         );
+
+        double averageSalaryByDepartment = getAverageSalaryByDepartment(department);
+        System.out.printf("Среднее значение зарплат по отделу %s: %.2f рублей\n",
+                department,
+                averageSalaryByDepartment
+        );
     }
 
     private static void printEmployees() {
@@ -141,8 +147,6 @@ public class Main {
     }
 
     private static Employee getEmployeeWithMinSalaryByDepartment(byte department) {
-        if (employees.length == 0) return null;
-
         Employee employeeWithMinSalary = null;
         for (Employee employee : employees) {
             if (employee.getDepartment() != department) continue;
@@ -158,8 +162,6 @@ public class Main {
     }
 
     private static Employee getEmployeeWithMaxSalaryByDepartment(byte department) {
-        if (employees.length == 0) return null;
-
         Employee employeeWithMaxSalary = null;
         for (Employee employee : employees) {
             if (employee.getDepartment() != department) continue;
@@ -183,5 +185,18 @@ public class Main {
         }
 
         return totalCosts;
+    }
+
+    private static double getAverageSalaryByDepartment(byte department) {
+        int count = 0;
+        double totalCosts = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                totalCosts += employee.getSalary();
+                count++;
+            }
+        }
+
+        return totalCosts / count;
     }
 }
