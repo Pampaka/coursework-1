@@ -18,20 +18,6 @@ public class Employee {
         this.salary = salary;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
-        return id == employee.id && department == employee.department &&
-                salary == employee.salary && Objects.equals(name, employee.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, department, salary);
-    }
-
     public int getId() {
         return id;
     }
@@ -64,5 +50,18 @@ public class Employee {
                 this.department,
                 this.salary
         );
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && Objects.equals(name, employee.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name);
     }
 }
