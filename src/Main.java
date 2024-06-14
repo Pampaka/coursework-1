@@ -76,5 +76,8 @@ public class Main {
         employeeBook.removeEmployee(6);
         addResult = employeeBook.addEmployee(new Employee("Пойманный М.В.", (byte) 5, 52121));
         System.out.println(addResult);
+
+        Employee employee = employeeBook.getEmployee(12);
+        System.out.println(employee);
     }
 }

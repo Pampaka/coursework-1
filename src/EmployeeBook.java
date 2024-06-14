@@ -16,6 +16,15 @@ public class EmployeeBook {
         };
     }
 
+    public Employee getEmployee(int id) {
+        for (Employee employee : employees) {
+            if (employee.getId() == id) {
+                return employee;
+            }
+        }
+        return null;
+    }
+
     public boolean addEmployee(Employee employee) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] == null) {
