@@ -78,6 +78,9 @@ public class Main {
         indexSalariesByDepartment(10.12, department);
         printEmployeesByDepartment(department);
 
+        System.out.println();
+        printEmployeesSalaryLt(40000);
+
     }
 
     private static void printEmployees() {
@@ -228,6 +231,18 @@ public class Main {
 
         if (!hasEmployees) {
             System.out.println("В отделе нет ни одного сотрудника");
+        }
+    }
+
+    private static void printEmployeesSalaryLt(double salary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() < salary) {
+                System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getSalary()
+                );
+            }
         }
     }
 }
