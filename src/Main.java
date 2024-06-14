@@ -74,6 +74,10 @@ public class Main {
                 department,
                 averageSalaryByDepartment
         );
+
+        indexSalariesByDepartment(10.12, department);
+        printEmployeesByDepartment(department);
+
     }
 
     private static void printEmployees() {
@@ -198,5 +202,32 @@ public class Main {
         }
 
         return totalCosts / count;
+    }
+
+    private static void indexSalariesByDepartment(double percent, byte department) {
+        double index = 1 + 1 / percent;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                employee.setSalary(employee.getSalary() * index);
+            }
+        }
+    }
+
+    private static void printEmployeesByDepartment(byte department) {
+        boolean hasEmployees = false;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getSalary()
+                );
+                hasEmployees = true;
+            }
+        }
+
+        if (!hasEmployees) {
+            System.out.println("В отделе нет ни одного сотрудника");
+        }
     }
 }
