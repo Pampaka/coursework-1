@@ -7,9 +7,9 @@ public class Employee {
     private byte department;
     private double salary;
 
-    public Employee(String name, byte department, int salary) {
+    public Employee(String name, byte department, double salary) {
         if (department < 1 || department > 5) {
-            throw new IllegalArgumentException("Департамент должен быть от 1 до 5");
+            throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
         }
 
         this.id = idCounter++;
