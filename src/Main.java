@@ -43,6 +43,16 @@ public class Main {
 
         indexSalaries(10.12);
         printEmployees();
+
+        byte department = 2;
+        Employee employeeWithMinSalaryByDepartment = getEmployeeWithMinSalaryByDepartment(department);
+        if (employeeWithMinSalaryByDepartment != null) {
+            System.out.printf("Сотрудник отдела %s с минимальной заработной платой в месяц: %s ЗП: %.2f рублей\n",
+                    department,
+                    employeeWithMinSalaryByDepartment.getName(),
+                    employeeWithMinSalaryByDepartment.getSalary()
+            );
+        }
     }
 
     private static void printEmployees() {
@@ -113,5 +123,22 @@ public class Main {
         for (Employee employee : employees) {
             employee.setSalary(employee.getSalary() * index);
         }
+    }
+
+    private static Employee getEmployeeWithMinSalaryByDepartment(byte department) {
+        if (employees.length == 0) return null;
+
+        Employee employeeWithMinSalary = null;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() != department) continue;
+
+            if (employeeWithMinSalary == null) {
+                employeeWithMinSalary = employee;
+            } else if (employee.getSalary() < employeeWithMinSalary.getSalary()) {
+                employeeWithMinSalary = employee;
+            }
+        }
+
+        return employeeWithMinSalary;
     }
 }
