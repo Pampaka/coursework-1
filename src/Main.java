@@ -53,6 +53,15 @@ public class Main {
                     employeeWithMinSalaryByDepartment.getSalary()
             );
         }
+
+        Employee employeeWithMaxSalaryByDepartment = getEmployeeWithMaxSalaryByDepartment(department);
+        if (employeeWithMaxSalaryByDepartment != null) {
+            System.out.printf("Сотрудник отдела %s с максимальной заработной платой в месяц: %s ЗП: %.2f рублей\n",
+                    department,
+                    employeeWithMaxSalaryByDepartment.getName(),
+                    employeeWithMaxSalaryByDepartment.getSalary()
+            );
+        }
     }
 
     private static void printEmployees() {
@@ -140,5 +149,22 @@ public class Main {
         }
 
         return employeeWithMinSalary;
+    }
+
+    private static Employee getEmployeeWithMaxSalaryByDepartment(byte department) {
+        if (employees.length == 0) return null;
+
+        Employee employeeWithMaxSalary = null;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() != department) continue;
+
+            if (employeeWithMaxSalary == null) {
+                employeeWithMaxSalary = employee;
+            } else if (employee.getSalary() > employeeWithMaxSalary.getSalary()) {
+                employeeWithMaxSalary = employee;
+            }
+        }
+
+        return employeeWithMaxSalary;
     }
 }
