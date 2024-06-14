@@ -5,7 +5,7 @@ public class Employee {
     private final int id;
     private final String name;
     private byte department;
-    private int salary;
+    private double salary;
 
     public Employee(String name, byte department, int salary) {
         this.id = idCounter++;
@@ -44,17 +44,17 @@ public class Employee {
         return department;
     }
 
-    public void setSalary(int salary) {
+    public void setSalary(double salary) {
         this.salary = salary;
     }
 
-    public int getSalary() {
+    public double getSalary() {
         return salary;
     }
 
     @Override
     public String toString() {
-        return String.format("Сотрудник %s. Имя %s. Отдел %s. Зарплата %s",
+        return String.format("Сотрудник %s. Имя %s. Отдел %s. Зарплата %.2f",
                 this.id,
                 this.name,
                 this.department,
