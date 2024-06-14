@@ -81,6 +81,9 @@ public class Main {
         System.out.println();
         printEmployeesSalaryLt(40000);
 
+        System.out.println();
+        printEmployeesSalaryGte(40000);
+
     }
 
     private static void printEmployees() {
@@ -237,6 +240,18 @@ public class Main {
     private static void printEmployeesSalaryLt(double salary) {
         for (Employee employee : employees) {
             if (employee.getSalary() < salary) {
+                System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
+                        employee.getId(),
+                        employee.getName(),
+                        employee.getSalary()
+                );
+            }
+        }
+    }
+
+    private static void printEmployeesSalaryGte(double salary) {
+        for (Employee employee : employees) {
+            if (employee.getSalary() >= salary) {
                 System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
                         employee.getId(),
                         employee.getName(),
