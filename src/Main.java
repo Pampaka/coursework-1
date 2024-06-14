@@ -17,12 +17,12 @@ public class Main {
 
         printEmployees();
 
-        int totalCosts = getTotalSalaryCosts();
-        System.out.printf("Сумма затрат на заработную плату в месяц: %s рублей\n", totalCosts);
+        double totalCosts = getTotalSalaryCosts();
+        System.out.printf("Сумма затрат на заработную плату в месяц: %.2f рублей\n", totalCosts);
 
         Employee employeeWithMinSalary = getEmployeeWithMinSalary();
         if (employeeWithMinSalary != null) {
-            System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s ЗП: %s рублей\n",
+            System.out.printf("Сотрудник с минимальной заработной платой в месяц: %s ЗП: %.2f рублей\n",
                     employeeWithMinSalary.getName(),
                     employeeWithMinSalary.getSalary()
             );
@@ -30,13 +30,13 @@ public class Main {
 
         Employee employeeWithMaxSalary = getEmployeeWithMaxSalary();
         if (employeeWithMaxSalary != null) {
-            System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s ЗП: %s рублей\n",
+            System.out.printf("Сотрудник с максимальной заработной платой в месяц: %s ЗП: %.2f рублей\n",
                     employeeWithMaxSalary.getName(),
                     employeeWithMaxSalary.getSalary()
             );
         }
 
-        float averageSalary = getAverageSalary();
+        double averageSalary = getAverageSalary();
         System.out.printf("Среднее значение зарплат: %.2f рублей\n", averageSalary);
 
         printEmployeesNames();
@@ -53,8 +53,8 @@ public class Main {
         }
     }
 
-    private static int getTotalSalaryCosts() {
-        int totalCosts = 0;
+    private static double getTotalSalaryCosts() {
+        double totalCosts = 0;
         for (Employee employee : employees) {
             totalCosts += employee.getSalary();
         }
@@ -88,9 +88,9 @@ public class Main {
         return employeeWithMaxSalary;
     }
 
-    private static float getAverageSalary() {
+    private static double getAverageSalary() {
         if (employees.length == 0) return 0f;
-        return (float) getTotalSalaryCosts() / employees.length;
+        return getTotalSalaryCosts() / employees.length;
     }
 
     private static void printEmployeesNames() {
