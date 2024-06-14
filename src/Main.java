@@ -62,6 +62,12 @@ public class Main {
                     employeeWithMaxSalaryByDepartment.getSalary()
             );
         }
+
+        double totalCostsByDepartment = getTotalSalaryCostsByDepartment(department);
+        System.out.printf("Сумма затрат на заработную плату в месяц по отделу %s: %.2f рублей\n",
+                department,
+                totalCostsByDepartment
+        );
     }
 
     private static void printEmployees() {
@@ -166,5 +172,16 @@ public class Main {
         }
 
         return employeeWithMaxSalary;
+    }
+
+    private static double getTotalSalaryCostsByDepartment(byte department) {
+        double totalCosts = 0;
+        for (Employee employee : employees) {
+            if (employee.getDepartment() == department) {
+                totalCosts += employee.getSalary();
+            }
+        }
+
+        return totalCosts;
     }
 }
