@@ -37,13 +37,15 @@ public class EmployeeBook {
         return false;
     }
 
-    public void removeEmployee(int id) {
+    public boolean removeEmployee(int id) {
         for (int i = 0; i < employees.length; i++) {
             if (employees[i] != null && employees[i].getId() == id) {
                 employees[i] = null;
-                return;
+                return true;
             }
         }
+
+        return false;
     }
 
     public void printEmployees() {

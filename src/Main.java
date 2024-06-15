@@ -72,10 +72,11 @@ public class Main {
         employeeBook.printEmployeesSalaryGte(40000);
 
         boolean addResult = employeeBook.addEmployee("Неуловимый М.В.", (byte) 5, 52121);
-        System.out.println(addResult);
-        employeeBook.removeEmployee(6);
+        System.out.println("addResult: " + addResult);
+        boolean removeResult = employeeBook.removeEmployee(6);
+        System.out.println("removeResult: " + removeResult);
         addResult = employeeBook.addEmployee("Пойманный М.В.", (byte) 5, 52121);
-        System.out.println(addResult);
+        System.out.println("addResult: " + addResult);
 
         Employee employee = employeeBook.getEmployee(11);
         System.out.println(employee);
