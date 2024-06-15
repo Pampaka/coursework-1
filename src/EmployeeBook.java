@@ -18,7 +18,7 @@ public class EmployeeBook {
 
     public Employee getEmployee(int id) {
         for (Employee employee : employees) {
-            if (employee.getId() == id) {
+            if (employee != null && employee.getId() == id) {
                 return employee;
             }
         }
@@ -39,7 +39,7 @@ public class EmployeeBook {
 
     public void removeEmployee(int id) {
         for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getId() == id) {
+            if (employees[i] != null && employees[i].getId() == id) {
                 employees[i] = null;
                 return;
             }
@@ -60,7 +60,9 @@ public class EmployeeBook {
     public double getTotalSalaryCosts() {
         double totalCosts = 0;
         for (Employee employee : employees) {
-            totalCosts += employee.getSalary();
+            if (employee != null) {
+                totalCosts += employee.getSalary();
+            }
         }
 
         return totalCosts;
@@ -71,7 +73,11 @@ public class EmployeeBook {
 
         Employee employeeWithMinSalary = employees[0];
         for (Employee employee : employees) {
-            if (employee.getSalary() < employeeWithMinSalary.getSalary()) {
+            if (employee == null) continue;
+
+            if (employeeWithMinSalary == null) {
+                employeeWithMinSalary = employee;
+            } else if (employee.getSalary() < employeeWithMinSalary.getSalary()) {
                 employeeWithMinSalary = employee;
             }
         }
@@ -84,7 +90,11 @@ public class EmployeeBook {
 
         Employee employeeWithMaxSalary = employees[0];
         for (Employee employee : employees) {
-            if (employee.getSalary() > employeeWithMaxSalary.getSalary()) {
+            if (employee == null) continue;
+
+            if (employeeWithMaxSalary == null) {
+                employeeWithMaxSalary = employee;
+            } else if (employee.getSalary() > employeeWithMaxSalary.getSalary()) {
                 employeeWithMaxSalary = employee;
             }
         }
@@ -105,21 +115,25 @@ public class EmployeeBook {
 
         System.out.println("Список сотрудников: ");
         for (Employee employee : employees) {
-            System.out.println(employee.getName());
+            if (employee != null) {
+                System.out.println(employee.getName());
+            }
         }
     }
 
     public void indexSalaries(double percent) {
         double index = 1 + 1 / percent;
         for (Employee employee : employees) {
-            employee.setSalary(employee.getSalary() * index);
+            if (employee != null) {
+                employee.setSalary(employee.getSalary() * index);
+            }
         }
     }
 
     public Employee getEmployeeWithMinSalaryByDepartment(byte department) {
         Employee employeeWithMinSalary = null;
         for (Employee employee : employees) {
-            if (employee.getDepartment() != department) continue;
+            if (employee == null || employee.getDepartment() != department) continue;
 
             if (employeeWithMinSalary == null) {
                 employeeWithMinSalary = employee;
@@ -134,7 +148,7 @@ public class EmployeeBook {
     public Employee getEmployeeWithMaxSalaryByDepartment(byte department) {
         Employee employeeWithMaxSalary = null;
         for (Employee employee : employees) {
-            if (employee.getDepartment() != department) continue;
+            if (employee == null || employee.getDepartment() != department) continue;
 
             if (employeeWithMaxSalary == null) {
                 employeeWithMaxSalary = employee;
@@ -149,7 +163,7 @@ public class EmployeeBook {
     public double getTotalSalaryCostsByDepartment(byte department) {
         double totalCosts = 0;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == department) {
+            if (employee != null && employee.getDepartment() == department) {
                 totalCosts += employee.getSalary();
             }
         }
@@ -161,7 +175,7 @@ public class EmployeeBook {
         int count = 0;
         double totalCosts = 0;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == department) {
+            if (employee != null && employee.getDepartment() == department) {
                 totalCosts += employee.getSalary();
                 count++;
             }
@@ -173,7 +187,7 @@ public class EmployeeBook {
     public void indexSalariesByDepartment(double percent, byte department) {
         double index = 1 + 1 / percent;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == department) {
+            if (employee != null && employee.getDepartment() == department) {
                 employee.setSalary(employee.getSalary() * index);
             }
         }
@@ -182,7 +196,7 @@ public class EmployeeBook {
     public void printEmployeesByDepartment(byte department) {
         boolean hasEmployees = false;
         for (Employee employee : employees) {
-            if (employee.getDepartment() == department) {
+            if (employee != null && employee.getDepartment() == department) {
                 System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
                         employee.getId(),
                         employee.getName(),
@@ -199,7 +213,7 @@ public class EmployeeBook {
 
     public void printEmployeesSalaryLt(double salary) {
         for (Employee employee : employees) {
-            if (employee.getSalary() < salary) {
+            if (employee != null && employee.getSalary() < salary) {
                 System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
                         employee.getId(),
                         employee.getName(),
@@ -211,7 +225,7 @@ public class EmployeeBook {
 
     public void printEmployeesSalaryGte(double salary) {
         for (Employee employee : employees) {
-            if (employee.getSalary() >= salary) {
+            if (employee != null && employee.getSalary() >= salary) {
                 System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
                         employee.getId(),
                         employee.getName(),

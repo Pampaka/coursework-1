@@ -27,6 +27,9 @@ public class Employee {
     }
 
     public void setDepartment(byte department) {
+        if (department < 1 || department > 5) {
+            throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
+        }
         this.department = department;
     }
 
