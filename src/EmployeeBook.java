@@ -49,13 +49,16 @@ public class EmployeeBook {
     }
 
     public void printEmployees() {
-        if (employees.length == 0) {
-            System.out.println("Нет ни одного сотрудника");
-            return;
+        boolean hasEmployees = false;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                System.out.println(employee);
+                hasEmployees = true;
+            }
         }
 
-        for (Employee employee : employees) {
-            System.out.println(employee);
+        if (!hasEmployees) {
+            System.out.println("Нет ни одного сотрудника");
         }
     }
 
@@ -115,16 +118,17 @@ public class EmployeeBook {
     }
 
     public void printEmployeesNames() {
-        if (employees.length == 0) {
-            System.out.println("Нет ни одного сотрудника");
-            return;
-        }
-
         System.out.println("Список сотрудников: ");
+        boolean hasEmployees = false;
         for (Employee employee : employees) {
             if (employee != null) {
                 System.out.println(employee.getName());
+                hasEmployees = true;
             }
+        }
+
+        if (!hasEmployees) {
+            System.out.println("Нет ни одного сотрудника");
         }
     }
 
