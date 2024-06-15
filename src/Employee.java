@@ -8,9 +8,7 @@ public class Employee {
     private double salary;
 
     public Employee(String name, byte department, double salary) {
-        if (department < 1 || department > 5) {
-            throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
-        }
+        this.departmentValidate(department);
 
         this.id = idCounter++;
         this.name = name;
@@ -27,9 +25,7 @@ public class Employee {
     }
 
     public void setDepartment(byte department) {
-        if (department < 1 || department > 5) {
-            throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
-        }
+        this.departmentValidate(department);
         this.department = department;
     }
 
@@ -43,6 +39,12 @@ public class Employee {
 
     public double getSalary() {
         return salary;
+    }
+
+    private void departmentValidate(byte department) {
+        if (department < 1 || department > 5) {
+            throw new IllegalArgumentException("Отдел должен быть от 1 до 5");
+        }
     }
 
     public String toStringMainData() {
