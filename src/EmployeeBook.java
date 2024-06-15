@@ -108,7 +108,7 @@ public class EmployeeBook {
         if (employees.length == 0) return 0f;
 
         int count = 0;
-        for (Employee employee:employees) {
+        for (Employee employee : employees) {
             if (employee != null) count++;
         }
         return getTotalSalaryCosts() / count;
