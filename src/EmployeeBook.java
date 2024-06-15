@@ -106,7 +106,12 @@ public class EmployeeBook {
 
     public double getAverageSalary() {
         if (employees.length == 0) return 0f;
-        return getTotalSalaryCosts() / employees.length;
+
+        int count = 0;
+        for (Employee employee:employees) {
+            if (employee != null) count++;
+        }
+        return getTotalSalaryCosts() / count;
     }
 
     public void printEmployeesNames() {
