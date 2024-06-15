@@ -208,7 +208,7 @@ public class EmployeeBook {
         boolean hasEmployees = false;
         for (Employee employee : employees) {
             if (employee != null && employee.getDepartment() == department) {
-                System.out.printf(employee.toStringMainData());
+                System.out.println(employee.toStringMainData());
                 hasEmployees = true;
             }
         }
