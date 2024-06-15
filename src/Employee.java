@@ -45,6 +45,14 @@ public class Employee {
         return salary;
     }
 
+    public String toStringMainData() {
+        return String.format("Сотрудник %s. Имя %s. Зарплата %.2f",
+                this.id,
+                this.name,
+                this.salary
+        );
+    }
+
     @Override
     public String toString() {
         return String.format("Сотрудник %s. Имя %s. Отдел %s. Зарплата %.2f",

@@ -204,11 +204,7 @@ public class EmployeeBook {
         boolean hasEmployees = false;
         for (Employee employee : employees) {
             if (employee != null && employee.getDepartment() == department) {
-                System.out.printf("Сотрудник %s. Имя %s. Зарплата %.2f\n",
-                        employee.getId(),
-                        employee.getName(),
-                        employee.getSalary()
-                );
+                System.out.printf(employee.toStringMainData());
                 hasEmployees = true;
             }
         }
