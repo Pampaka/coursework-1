@@ -8,8 +8,8 @@ import com.skypro.employees.exeptions.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
@@ -22,19 +22,15 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllEmployees() {
-        return employees;
+        return Collections.unmodifiableList(employees);
     }
 
     @Override
     public Employee findEmployee(String firsName, String lastName) {
-        for (Employee employee : employees) {
-            if (employee != null
-                    && Objects.equals(employee.getFirstName(), firsName)
-                    && Objects.equals(employee.getLastName(), lastName)) {
-                return employee;
-            }
+        Employee employee = new Employee(firsName, lastName);
+        if (employees.contains(employee)) {
+            return employee;
         }
-
         throw new EmployeeNotFoundException();
     }
 
@@ -44,29 +40,22 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeStorageIsFullException();
         }
 
-        try {
-            findEmployee(firsName, lastName);
+        Employee employee = new Employee(firsName, lastName);
+        if (employees.contains(employee)) {
             throw new EmployeeAlreadyAddedException();
-        } catch (EmployeeNotFoundException ignored) {
         }
 
-        Employee employee = new Employee(firsName, lastName);
         employees.add(employee);
-
         return employee;
     }
 
     @Override
     public Employee removeEmployee(String firsName, String lastName) {
-        for (int i = 0; i < employees.size(); i++) {
-            Employee employee = employees.get(i);
-            if (employee != null
-                    && Objects.equals(employee.getFirstName(), firsName)
-                    && Objects.equals(employee.getLastName(), lastName)) {
-                return employees.remove(i);
-            }
+        Employee employee = new Employee(firsName, lastName);
+        if (employees.contains(employee)) {
+            employees.remove(employee);
+            return employee;
         }
-
         throw new EmployeeNotFoundException();
     }
 }
