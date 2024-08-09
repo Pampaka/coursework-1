@@ -16,12 +16,16 @@ public class EmployeeServiceImpl implements EmployeeService {
     private final List<Employee> employees = new ArrayList<>();
 
     @Override
+    public List<Employee> findAllEmployees() {
+        return employees;
+    }
+
+    @Override
     public Employee findEmployee(String firsName, String lastName) {
         for (Employee employee : employees) {
-            if (employee != null &&
-                    Objects.equals(employee.getFirstName(), firsName) &&
-                    Objects.equals(employee.getLastName(), lastName)
-            ) {
+            if (employee != null
+                    && Objects.equals(employee.getFirstName(), firsName)
+                    && Objects.equals(employee.getLastName(), lastName)) {
                 return employee;
             }
         }
@@ -48,15 +52,13 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public void removeEmployee(String firsName, String lastName) {
+    public Employee removeEmployee(String firsName, String lastName) {
         for (int i = 0; i < employees.size(); i++) {
             Employee employee = employees.get(i);
-            if (employee != null &&
-                    Objects.equals(employee.getFirstName(), firsName) &&
-                    Objects.equals(employee.getLastName(), lastName)
-            ) {
-                employees.remove(i);
-                return;
+            if (employee != null
+                    && Objects.equals(employee.getFirstName(), firsName)
+                    && Objects.equals(employee.getLastName(), lastName)) {
+                return employees.remove(i);
             }
         }
 
