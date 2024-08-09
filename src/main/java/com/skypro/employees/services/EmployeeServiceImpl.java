@@ -1,5 +1,6 @@
 package com.skypro.employees.services;
 
+import com.skypro.employees.configuration.EmployeeConfig;
 import com.skypro.employees.entities.Employee;
 import com.skypro.employees.exeptions.EmployeeAlreadyAddedException;
 import com.skypro.employees.exeptions.EmployeeNotFoundException;
@@ -12,8 +13,12 @@ import java.util.Objects;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final int MAX_COUNT_EMPLOYEES = 10;
+    private final int MAX_COUNT_EMPLOYEES;
     private final List<Employee> employees = new ArrayList<>();
+
+    public EmployeeServiceImpl(EmployeeConfig config) {
+        MAX_COUNT_EMPLOYEES = config.getMaxSize();
+    }
 
     @Override
     public List<Employee> findAllEmployees() {
