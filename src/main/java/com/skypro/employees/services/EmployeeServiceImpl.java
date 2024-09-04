@@ -7,14 +7,12 @@ import com.skypro.employees.exeptions.EmployeeNotFoundException;
 import com.skypro.employees.exeptions.EmployeeStorageIsFullException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
     private final int MAX_COUNT_EMPLOYEES;
-    private final List<Employee> employees = new ArrayList<>();
+    private final Map<String, Employee> employees = new HashMap<>();
 
     public EmployeeServiceImpl(EmployeeConfig config) {
         MAX_COUNT_EMPLOYEES = config.getMaxSize();
@@ -22,40 +20,45 @@ public class EmployeeServiceImpl implements EmployeeService {
 
     @Override
     public List<Employee> findAllEmployees() {
-        return Collections.unmodifiableList(employees);
+        return new ArrayList<>(employees.values());
     }
 
     @Override
-    public Employee findEmployee(String firsName, String lastName) {
-        Employee employee = new Employee(firsName, lastName);
-        if (employees.contains(employee)) {
-            return employee;
+    public Employee findEmployee(String firstName, String lastName) {
+        Employee employee = employees.get(getKey(firstName, lastName));
+        if (employee == null) {
+            throw new EmployeeNotFoundException();
         }
-        throw new EmployeeNotFoundException();
-    }
-
-    @Override
-    public Employee addEmployee(String firsName, String lastName) {
-        if (employees.size() >= MAX_COUNT_EMPLOYEES) {
-            throw new EmployeeStorageIsFullException();
-        }
-
-        Employee employee = new Employee(firsName, lastName);
-        if (employees.contains(employee)) {
-            throw new EmployeeAlreadyAddedException();
-        }
-
-        employees.add(employee);
         return employee;
     }
 
     @Override
-    public Employee removeEmployee(String firsName, String lastName) {
-        Employee employee = new Employee(firsName, lastName);
-        if (employees.contains(employee)) {
-            employees.remove(employee);
-            return employee;
+    public Employee addEmployee(String firstName, String lastName) {
+        if (employees.size() >= MAX_COUNT_EMPLOYEES) {
+            throw new EmployeeStorageIsFullException();
         }
-        throw new EmployeeNotFoundException();
+
+        String key = getKey(firstName, lastName);
+        if (employees.containsKey(key)) {
+            throw new EmployeeAlreadyAddedException();
+        }
+
+        Employee employee = new Employee(firstName, lastName);
+        employees.put(key, employee);
+
+        return employee;
+    }
+
+    @Override
+    public Employee removeEmployee(String firstName, String lastName) {
+        String key = getKey(firstName, lastName);
+        if (!employees.containsKey(key)) {
+            throw new EmployeeNotFoundException();
+        }
+        return employees.remove(key);
+    }
+
+    private String getKey(String firstName, String lastName) {
+        return firstName + "_" + lastName;
     }
 }
