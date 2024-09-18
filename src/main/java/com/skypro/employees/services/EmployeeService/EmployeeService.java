@@ -1,6 +1,6 @@
-package com.skypro.employees.services;
+package com.skypro.employees.services.EmployeeService;
 
-import com.skypro.employees.entities.Employee;
+import com.skypro.employees.models.Employee;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ public interface EmployeeService {
 
     Employee findEmployee(String firsName, String lastName);
 
-    Employee addEmployee(String firsName, String lastName);
+    Employee addEmployee(String firsName, String lastName, int salary, int department);
 
     Employee removeEmployee(String firsName, String lastName);
 }
