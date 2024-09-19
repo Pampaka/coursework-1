@@ -41,16 +41,15 @@ public class DepartmentServiceImpl implements DepartmentService {
     }
 
     @Override
-    public Map<Integer, List<Employee>> findEmployeesGroupByDepartments() {
-        List<Employee> employees = employeeService.findAllEmployees();
-        Map<Integer, List<Employee>> employeesGroups = new HashMap<>();
-        employees.forEach(e -> {
-            if (employeesGroups.containsKey(e.getDepartment())) {
-                employeesGroups.get(e.getDepartment()).add(e);
-            } else {
-                employeesGroups.put(e.getDepartment(), new ArrayList<>(List.of(e)));
-            }
-        });
-        return employeesGroups;
+    public Map<Integer, List<Employee>> findEmployeesGroupByDepartments(Integer departmentId) {
+        List<Employee> employees;
+        if (departmentId == null) {
+            employees = employeeService.findAllEmployees();
+        } else {
+            employees = findEmployeesByDepartment(departmentId);
+        }
+
+        return employees.stream()
+                .collect(Collectors.groupingBy(Employee::getDepartment));
     }
 }

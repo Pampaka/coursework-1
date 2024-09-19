@@ -32,10 +32,6 @@ public class DepartmentController {
     @GetMapping("all")
     public Map<Integer, List<Employee>> findEmployeesByDepartment(
             @RequestParam(name = "departmentId", required = false) Integer departmentId) {
-        if (departmentId == null) {
-            return departmentService.findEmployeesGroupByDepartments();
-        }
-        List<Employee> employees = departmentService.findEmployeesByDepartment(departmentId);
-        return Map.of(departmentId, employees);
+        return departmentService.findEmployeesGroupByDepartments(departmentId);
     }
 }
