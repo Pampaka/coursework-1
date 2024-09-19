@@ -1,7 +1,8 @@
 package com.skypro.employees.controllers;
 
-import com.skypro.employees.entities.Employee;
-import com.skypro.employees.services.EmployeeService;
+import com.skypro.employees.models.Employee;
+import com.skypro.employees.services.EmployeeService.EmployeeService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -27,9 +28,12 @@ public class EmployeeController {
     }
 
     @GetMapping("/add")
+    @ResponseStatus(HttpStatus.CREATED)
     public Employee addEmployee(@RequestParam("firstName") String firstName,
-                                @RequestParam("lastName") String lastName) {
-        return employeeService.addEmployee(firstName, lastName);
+                                @RequestParam("lastName") String lastName,
+                                @RequestParam("salary") int salary,
+                                @RequestParam("departmentId") int department) {
+        return employeeService.addEmployee(firstName, lastName, salary, department);
     }
 
     @GetMapping("/remove")

@@ -1,7 +1,7 @@
-package com.skypro.employees.services;
+package com.skypro.employees.services.EmployeeService;
 
 import com.skypro.employees.configuration.EmployeeConfig;
-import com.skypro.employees.entities.Employee;
+import com.skypro.employees.models.Employee;
 import com.skypro.employees.exeptions.EmployeeAlreadyAddedException;
 import com.skypro.employees.exeptions.EmployeeNotFoundException;
 import com.skypro.employees.exeptions.EmployeeStorageIsFullException;
@@ -33,7 +33,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
 
     @Override
-    public Employee addEmployee(String firstName, String lastName) {
+    public Employee addEmployee(String firstName, String lastName, int salary, int department) {
         if (employees.size() >= MAX_COUNT_EMPLOYEES) {
             throw new EmployeeStorageIsFullException();
         }
@@ -43,7 +43,7 @@ public class EmployeeServiceImpl implements EmployeeService {
             throw new EmployeeAlreadyAddedException();
         }
 
-        Employee employee = new Employee(firstName, lastName);
+        Employee employee = new Employee(firstName, lastName, salary, department);
         employees.put(key, employee);
 
         return employee;
